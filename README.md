@@ -12,6 +12,7 @@ stealed from: https://github.com/pearofducks/foodprocessor
 - [ ] remark or mdx install
 - [ ] install @groceristar/groceristar-fetch
 - [ ] upgrade to router v4
+- [ ] shall we have redux/mobx here? not sure
 
 
 
