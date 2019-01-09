@@ -13,6 +13,7 @@ class Recipe {
     this.what = what;
     this.how = marked(how.join("\n\n"));
   }
+
   slug() {
     return this.name.toString().toLowerCase()
       .replace(/\s+/g, '-')

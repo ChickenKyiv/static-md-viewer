@@ -7,8 +7,15 @@ import { recipeStore } from './stores';
 
 @observer
 export class Layout extends Component {
-  componentDidMount() { recipeStore.loadRecipes(); } 
+
+  componentDidMount() {
+    recipeStore.loadRecipes();
+  }
+
   render() {
+
+    console.log(recipeStore)
+
     return (
       <div>
         <div className="header">
@@ -18,9 +25,13 @@ export class Layout extends Component {
               : "foodprocessor | recipes"
             }
           </h1>
-          { recipeStore.currentRecipe ? <h2 className="recipe-name">{recipeStore.currentRecipe.name}</h2> : "" }
+          { recipeStore.currentRecipe
+            ? <h2 className="recipe-name">{recipeStore.currentRecipe.name}</h2>
+            : "" }
         </div>
-        <div className="allChildContent"> { this.props.children } </div>
+        <div className="allChildContent">
+         { this.props.children }
+       </div>
       </div>
     );
   }
@@ -28,9 +39,14 @@ export class Layout extends Component {
 
 @observer
 export class Recipe extends Component {
-  componentDidMount() { recipeStore.currentRecipeSlug = this.props.params.name; }
+
+  componentDidMount() {
+    recipeStore.currentRecipeSlug = this.props.params.name;
+  }
+
   render() {
     if(recipeStore.hasRecipes()) {
+
       return (
         <div className="recipeBlock">
         { recipeStore.currentRecipe
@@ -41,7 +57,9 @@ export class Recipe extends Component {
           : <h5 className="error">RECIPE NOT FOUND</h5>
         }
         </div>
-        );
+
+      );
+
     } else {
       return <h5 className="error">LOADING</h5>
     }
@@ -49,10 +67,12 @@ export class Recipe extends Component {
 }
 
 export const IngredientSection = (props) => {
+
   return (
     <div className="ingredientSectionBlock">
     <h4>{props.header}</h4>
-    { Object.keys(props.content).map((k,i) => 
+
+    { Object.keys(props.content).map((k,i) =>
         <Ingredient key={i} amount={props.content[k]} title={k} />
     )}
     </div>
@@ -60,30 +80,38 @@ export const IngredientSection = (props) => {
 }
 
 export const What = (props) => {
+
   return (
     <div className="whatBlock">
       <h3>what</h3>
       { Object.keys(props.content).map((k,i) =>
-        typeof(props.content[k]) == 'string' 
+        typeof(props.content[k]) == 'string'
         ? <Ingredient key={i} amount={props.content[k]} title={k} />
         : <IngredientSection key={i} header={k} content={props.content[k]} />
       )}
     </div>
   );
+
 }
 
 export const How = (props) => {
+
   return (
     <div className="howBlock">
       <h3>how</h3>
       <div className="howTextBlock" dangerouslySetInnerHTML={{__html: props.content}} />
     </div>
   );
+
 }
 
 @observer
 export class RecipeList extends Component {
-  componentDidMount() { recipeStore.currentRecipeSlug = null; }
+
+  componentDidMount() {
+     recipeStore.currentRecipeSlug = null;
+   }
+
   render() {
     return (
       <div className="recipeListBlock">
@@ -91,7 +119,7 @@ export class RecipeList extends Component {
         { recipeStore.recipes.map((recipe,i) =>
             <li key={i}>
               <h2>
-                <Link to={`/${recipe.slug()}`}> {recipe.name} </Link> 
+                <Link to={`/${recipe.slug()}`}> {recipe.name} </Link>
               </h2>
             </li>
          )}
@@ -114,7 +142,11 @@ export class Ingredient extends Component {
     this.amountData = props.amount
     this.completed = false;
   }
-  render() { return <div className={this.ingredientClasses}>{this.amount}{this.title}</div> }
+
+  render() {
+     return <div className={this.ingredientClasses}>{this.amount}{this.title}</div>
+   }
+
   @computed get amountIsBlank() { return this.amountData == "" }
   @computed get title() {
     if(this.amountIsBlank) {
@@ -145,6 +177,7 @@ export class Ingredient extends Component {
       return measure;
     }
   }
+
   prettyify_amount(amount) {
     if(Number.isInteger(amount)) { return amount; }
     let whole_num = Math.floor(amount)

@@ -1,4 +1,19 @@
+
+
+
 # foodprocessor
+
+stealed from: https://github.com/pearofducks/foodprocessor
+
+- [ ] make it works on local
+- [ ] upgrade packages
+- [ ] replace with babel 7
+- [ ] upgrade webpack
+- [ ] remark or mdx install
+- [ ] install @groceristar/groceristar-fetch
+- [ ] upgrade to router v4
+
+
 
 A react/mobx javascript app for displaying recipes. Recipes are loaded from a static JSON file, so no API server is needed. :)
 
