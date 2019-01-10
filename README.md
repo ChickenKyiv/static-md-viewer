@@ -13,6 +13,8 @@ stealed from: https://github.com/pearofducks/foodprocessor
 - [ ] install @groceristar/groceristar-fetch
 - [ ] upgrade to router v4
 - [ ] shall we have redux/mobx here? not sure
+- [ ] change port to 3000
+- [ ] hot reload and open at next tab
 
 
 
